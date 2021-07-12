@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maxmin;
+package findduplic;
 
 import java.util.Scanner;
 
 /**
  * @author Saif Ullah
  */
-public class MaxMin {
+public class FindDuplic {
 
     /**
-     * Takes an array, displays max & min elements
+     * Displays duplicates from an array
      */
     public static void main(String[] args) {
         // object input of class Scanner
@@ -25,39 +25,42 @@ public class MaxMin {
         len = input.nextInt();
         
         // variables used
-        double[] array = new double[len];
-        double max, min;
+        int[] array = new int[len];
+        boolean found = false;
         
         for (int i = 0; i < len; i++) {
             
             // taking input
             System.out.printf("Enter element %d: ", i+1);
-            array[i] = input.nextDouble();
+            array[i] = input.nextInt();
             
         } // end of for loop
         
-        max = array[0];
-        min = array[0];
+        System.out.println("\nThe duplicates are: ");
         
-        for (int j = 1; j < len; j++) {
+        // iterating through given array
+        for (int j = 0; j < len; j++) {
             
-            // if maximum num found
-            if (array[j] > max) {
-                max = array[j];
-                continue;
+            // iterating similarly to find duplicates
+            for (int k = j+1; k < len; k++) {
                 
-            } // end of if body
-            
-            // if minimum num found
-            if (array[j] < min)
-                min = array[j];
+                // if found
+                if (array[j] == array[k]) {
+                    
+                    // displaying output
+                    System.out.printf("%d\n", array[k]);
+                    found = true;
+                    
+                } // end of if body
+                
+            } // end of for loop
             
         } // end of for loop
         
-        // Displaying output
-        System.out.printf("\nMaximum Number: %.1f\n", max);
-        System.out.printf("Minimum Number: %.1f\n", min);
+        // in case of distinct integers
+        if (!found)
+            System.out.println("NO Duplicate Integers Found!");
         
     } // end of main method
     
-} // end of MaxMin class
+} // end of class FindDuplic
